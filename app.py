@@ -62,12 +62,12 @@ def generate_sellers(n=120, seed=42):
     business_types = ["Food & Beverage", "Retail", "Services", "Health & Beauty", "Home & Repair"]
     states = ["CA", "TX", "NY", "FL", "IL", "WA", "CO", "GA", "AZ", "NC"]
     interventions = {
-        "declining_txn":    "📞 Schedule business review call",
-        "low_adoption":     "🎓 Offer onboarding session for unused features",
-        "support_spike":    "🛠️  Escalate to senior support specialist",
-        "cash_flow":        "💰 Send Square Capital pre-approval offer",
-        "hardware_issue":   "📦 Offer free hardware upgrade",
-        "high_value_risk":  "⭐ Assign dedicated account manager",
+        "declining_txn":    " Schedule business review call",
+        "low_adoption":     " Offer onboarding session for unused features",
+        "support_spike":    "  Escalate to senior support specialist",
+        "cash_flow":        " Send Square Capital pre-approval offer",
+        "hardware_issue":   " Offer free hardware upgrade",
+        "high_value_risk":  " Assign dedicated account manager",
     }
 
     def make_risk_pattern(base_score):
@@ -136,7 +136,7 @@ df = generate_sellers()
 
 # ── Sidebar ───────────────────────────────────────────────────────────────────
 with st.sidebar:
-    st.markdown("### 🟦 Seller Pulse")
+    st.markdown("###  Seller Pulse")
     st.markdown("*Square Merchant Success Tool*")
     st.markdown("---")
 
@@ -162,7 +162,7 @@ with st.sidebar:
 
     st.markdown("---")
     st.markdown("**View**")
-    page = st.radio("", ["📊 Dashboard", "👥 Seller Queue", "🔍 Seller Detail"], label_visibility="collapsed")
+    page = st.radio("", [" Dashboard", " Seller Queue", " Seller Detail"], label_visibility="collapsed")
 
     st.markdown("---")
     st.markdown("*Prototype · Feb 2026*")
@@ -180,7 +180,7 @@ filtered = df[
 # ══════════════════════════════════════════════════════════════════════════════
 # PAGE 1 — DASHBOARD
 # ══════════════════════════════════════════════════════════════════════════════
-if page == "📊 Dashboard":
+if page == " Dashboard":
     st.markdown("# Seller Pulse")
     st.markdown("*Proactive churn risk monitoring for Square's Merchant Success team*")
     st.markdown("---")
@@ -194,17 +194,17 @@ if page == "📊 Dashboard":
     contacted_pct  = df[df["risk_level"].isin(["Critical","High"])]["contacted"].mean() * 100
 
     with col1:
-        st.metric("🔴 Critical Risk Sellers", critical_count,
+        st.metric(" Critical Risk Sellers", critical_count,
                   delta=f"+3 vs last week", delta_color="inverse")
     with col2:
-        st.metric("🟡 High Risk Sellers", high_count,
+        st.metric(" High Risk Sellers", high_count,
                   delta=f"-2 vs last week")
     with col3:
-        st.metric("💸 At-Risk Monthly Revenue",
+        st.metric(" At-Risk Monthly Revenue",
                   f"${at_risk_rev:,.0f}",
                   delta="Combined Critical + High")
     with col4:
-        st.metric("📬 Outreach Coverage",
+        st.metric(" Outreach Coverage",
                   f"{contacted_pct:.0f}%",
                   delta="of at-risk sellers contacted",
                   delta_color="off")
@@ -250,7 +250,7 @@ if page == "📊 Dashboard":
         st.plotly_chart(fig2, use_container_width=True)
 
     # Top 5 critical sellers
-    st.markdown("#### 🚨 Top 5 Critical Sellers — Act Now")
+    st.markdown("####  Top 5 Critical Sellers — Act Now")
     top5 = (
         df[df["risk_level"] == "Critical"]
         .sort_values("monthly_revenue", ascending=False)
@@ -316,7 +316,7 @@ elif page == "👥 Seller Queue":
 # ══════════════════════════════════════════════════════════════════════════════
 # PAGE 3 — SELLER DETAIL
 # ══════════════════════════════════════════════════════════════════════════════
-elif page == "🔍 Seller Detail":
+elif page == " Seller Detail":
     st.markdown("# Seller Detail View")
     st.markdown("---")
 
